@@ -120,7 +120,14 @@ function calInit() {
       .querySelectorAll("#lights button")
       .forEach((b) => b.classList.remove("on"));
 
-    document.getElementById("confirm").textContent = "修改評分";
+    document.getElementById("confirm").textContent = "確認修改";
+  };
+  document.getElementById("cancelRating").onclick = () => {
+    document
+      .querySelectorAll("#lights button")
+      .forEach((b) => b.classList.remove("on"));
+
+    document.getElementById("confirm").dataset.score = "";
   };
   loadRating();
 }
@@ -246,9 +253,9 @@ function getSubjectBalanceScore(subject) {
 
   if (hasQuiz) {
     score +=
-  records.filter((record) => {
-    return record.study?.[`quiz|${subject}`];
-  }).length * 2;
+      records.filter((record) => {
+        return record.study?.[`quiz|${subject}`];
+      }).length * 2;
   }
 
   // 本週新增問題：每個 +1
@@ -527,7 +534,7 @@ function loadRating() {
     selected === key(yes) ? "昨日" : `${x[1]} / ${x[2]}`;
 
   document.getElementById("confirm").dataset.score = s || "";
-  document.getElementById("confirm").textContent = s ? "修改評分" : "確認";
+  document.getElementById("confirm").textContent = s ? "確認修改" : "確認";
   document.getElementById("hint").textContent = s
     ? `已留下 ${s} / 5 的紀錄。`
     : "選一個最接近當天狀態的程度。";
@@ -1209,26 +1216,24 @@ function questions() {
 
   let today = key(new Date());
 
-let pendingQuestions = d.questions.filter((q) => {
-  // 尚未解決 → 一直留在待處理區
-  if (!q.done) return true;
+  let pendingQuestions = d.questions.filter((q) => {
+    // 尚未解決 → 一直留在待處理區
+    if (!q.done) return true;
 
-  // 已解決 → 暫時保留兩天
-  if (!q.resolvedDate) return false;
+    // 已解決 → 暫時保留兩天
+    if (!q.resolvedDate) return false;
 
-  let resolved = new Date(q.resolvedDate + "T00:00:00");
-  let current = new Date(today + "T00:00:00");
+    let resolved = new Date(q.resolvedDate + "T00:00:00");
+    let current = new Date(today + "T00:00:00");
 
-  let daysPassed = Math.floor(
-    (current - resolved) / (1000 * 60 * 60 * 24)
-  );
+    let daysPassed = Math.floor((current - resolved) / (1000 * 60 * 60 * 24));
 
-  return daysPassed <= 2;
-});
+    return daysPassed <= 2;
+  });
 
-let solvedQuestions = d.questions.filter((q) => {
-  return q.done && q.resolvedDate;
-});
+  let solvedQuestions = d.questions.filter((q) => {
+    return q.done && q.resolvedDate;
+  });
 
   function renderQuestionGroups(questions, solved = false) {
     if (!questions.length) {
