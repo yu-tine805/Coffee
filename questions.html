@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>問題盒子｜Study Ledger</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <a class="brand" href="index.html"><span>✎</span> STUDY LEDGER</a>
+      <nav>
+        <a href="index.html">Home</a><a href="daily.html">每日學習狀況</a
+        ><a class="active" href="questions.html"
+          >問題盒子 <b id="questionCount">0</b></a
+        >
+      </nav>
+    </header>
+    <main class="page">
+      <p class="kicker">03 / QUESTION BOX</p>
+      <h1>不要把<br /><em>不懂的地方丟掉。</em></h1>
+      <p class="lead">
+        每一個問題都是下一次理解的入口。解決之後也保留，讓未來的自己看得到。
+      </p>
+      <section class="question-section">
+        <div class="archive-section-header">
+          <p class="kicker">QUESTIONS</p>
+          <h2>收集的問題</h2>
+          <p>把曾經卡住的地方留下來，之後再回頭看。</p>
+        </div>
+
+        <div id="questions"></div>
+
+        <div id="empty" class="empty">
+          目前還沒有留下問題。<br />
+          去「每日學習狀況」按下＋，把卡住的地方記下來。
+        </div>
+      </section>
+
+      <section class="weekly-effort-history">
+        <div class="archive-section-header">
+          <p class="kicker">WEEKLY EFFORT</p>
+          <h2>每週努力值紀錄</h2>
+          <p>每週結束後，這裡會留下過去的努力。</p>
+        </div>
+
+        <div id="weeklyHistory"></div>
+      </section>
+
+      <section class="weekly-study-history">
+        <div class="archive-section-header">
+          <p class="kicker">WEEKLY STUDY RECORD</p>
+          <h2>每週學習追蹤明細</h2>
+          <p>完整保存每一週每天留下的學習紀錄。</p>
+        </div>
+
+        <div id="weeklyArchives"></div>
+      </section>
+    </main>
+    <footer>STUDY LEDGER / QUESTIONS ARE DATA.</footer>
+    <script src="script.js"></script>
+  </body>
+</html>

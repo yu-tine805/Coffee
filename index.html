@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Study Ledger｜Home</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <a class="brand" href="index.html"><span>✎</span> STUDY LEDGER</a>
+      <nav>
+        <a class="active" href="index.html">Home</a
+        ><a href="daily.html">每日學習狀況</a
+        ><a href="questions.html">問題盒子 <b id="questionCount">0</b></a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <p class="kicker">A RECORD OF THE WORK YOU ACTUALLY DID</p>
+          <h1>明明有在讀，<br /><em>分數卻總是不理想?</em></h1>
+          <p class="lead">
+            把每天的努力、遺漏與問題留下來。<br />未來考差的時候，至少知道自己是如何走到這裡。
+          </p>
+        </div>
+        <section class="subject-balance-card">
+          <div class="subject-balance-top">
+            <p class="kicker">SUBJECT BALANCE</p>
+
+            <button
+              class="subject-balance-settings"
+              id="subjectBalanceSettings"
+              aria-label="設定顯示科目"
+            >
+              ⚙
+            </button>
+          </div>
+
+          <div class="subject-balance-menu" id="subjectBalanceMenu">
+            <p>顯示科目</p>
+            <div id="subjectBalanceOptions"></div>
+          </div>
+
+          <div id="subjectBalanceList"></div>
+
+          <div class="subject-balance-warning" id="subjectBalanceWarning"></div>
+        </section>
+      </section>
+      <div class="ticker">
+        每天追蹤學習狀況　／　告別假讀書　／　收集問題茁壯自己　／　
+      </div>
+      <section class="calendar-section">
+        <div class="section-title">
+          <div>
+            <p class="kicker">YOUR MONTH</p>
+            <div class="blossom-title">
+              <svg
+                class="blossom-mark"
+                viewBox="0 0 100 100"
+                aria-hidden="true"
+              >
+                <!-- 上 -->
+                <path
+                  d="M50 50
+       C44 43 39 34 39 25
+       C39 17 43 10 50 5
+       C57 10 61 17 61 25
+       C61 34 56 43 50 50Z"
+                ></path>
+
+                <!-- 右上 -->
+                <path
+                  d="M50 50
+       C44 43 39 34 39 25
+       C39 17 43 10 50 5
+       C57 10 61 17 61 25
+       C61 34 56 43 50 50Z"
+                  transform="rotate(72 50 50)"
+                ></path>
+
+                <!-- 左下 -->
+                <path
+                  d="M50 50
+       C44 43 39 34 39 25
+       C39 17 43 10 50 5
+       C57 10 61 17 61 25
+       C61 34 56 43 50 50Z"
+                  transform="rotate(216 50 50)"
+                ></path>
+
+                <!-- 左上 -->
+                <path
+                  d="M50 50
+       C44 43 39 34 39 25
+       C39 17 43 10 50 5
+       C57 10 61 17 61 25
+       C61 34 56 43 50 50Z"
+                  transform="rotate(288 50 50)"
+                ></path>
+              </svg>
+
+              <h2>為「付出」留下痕跡。</h2>
+            </div>
+          </div>
+          <p>點擊日期可修改過去的努力值。</p>
+        </div>
+        <div class="calendar-layout">
+          <div class="calendar-card">
+            <div class="cal-head">
+              <button id="pm">←</button><strong id="month"></strong
+              ><button id="nm">→</button>
+            </div>
+            <div class="week">
+              <span>一</span><span>二</span><span>三</span><span>四</span
+              ><span>五</span><span>六</span><span>日</span>
+            </div>
+            <div id="cal" class="cal"></div>
+          </div>
+
+          <div class="calendar-side">
+            <div class="weekly-progress-card">
+              <div class="weekly-progress-head">
+                <div>
+                  <span>每週累積努力值：</span>
+                  <small id="weeklyRange"></small>
+                </div>
+
+                <strong><span id="weeklyEffort">0</span> / 35</strong>
+              </div>
+
+              <div class="weekly-progress-bar">
+                <div id="weeklyEffortBar"></div>
+              </div>
+
+              <div class="weekly-stats">
+                <div>
+                  <span>本週已記錄</span>
+                  <strong><span id="weeklyDays">0</span> 天</strong>
+                </div>
+
+                <div>
+                  <span>平均努力值</span>
+                  <strong><span id="weeklyAverage">0</span></strong>
+                </div>
+
+                <div>
+                  <span>最高單日</span>
+                  <strong><span id="weeklyBest">0</span> ⚡︎</strong>
+                </div>
+
+                <div class="weekly-solved">
+                  <span>本週已解決</span>
+                  <strong
+                    ><span id="weeklySolvedQuestions">0</span> 個問題</strong
+                  >
+                </div>
+              </div>
+              <p id="weeklyMessage">這週才剛開始。</p>
+            </div>
+            <aside class="rating">
+              <p class="kicker">DAILY CHECK-IN</p>
+              <h3>對 <span id="rdate">昨日</span> 的自己評分：</h3>
+              <div id="lights">
+                <button data-n="1">
+                  <svg class="bolt" viewBox="0 0 20 30" aria-hidden="true">
+                    <polygon points="12,0 2,16 9,16 6,30 18,11 11,11"></polygon>
+                  </svg>
+                </button>
+
+                <button data-n="2">
+                  <svg class="bolt" viewBox="0 0 20 30" aria-hidden="true">
+                    <polygon points="12,0 2,16 9,16 6,30 18,11 11,11"></polygon>
+                  </svg>
+                </button>
+
+                <button data-n="3">
+                  <svg class="bolt" viewBox="0 0 20 30" aria-hidden="true">
+                    <polygon points="12,0 2,16 9,16 6,30 18,11 11,11"></polygon>
+                  </svg>
+                </button>
+
+                <button data-n="4">
+                  <svg class="bolt" viewBox="0 0 20 30" aria-hidden="true">
+                    <polygon points="12,0 2,16 9,16 6,30 18,11 11,11"></polygon>
+                  </svg>
+                </button>
+
+                <button data-n="5">
+                  <svg class="bolt" viewBox="0 0 20 30" aria-hidden="true">
+                    <polygon points="12,0 2,16 9,16 6,30 18,11 11,11"></polygon>
+                  </svg>
+                </button>
+              </div>
+              <p id="hint">選一個最接近當天狀態的程度。</p>
+              <button id="confirm">確認評分</button>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      STUDY LEDGER / KEEP THE PROCESS, NOT JUST THE RESULT.
+      <span>EST. 2026.11.20</span>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
