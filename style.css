@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap");
 
 :root {
@@ -493,22 +502,69 @@ h1 em {
 }
 
 .calendar-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 0.75fr;
+    gap: 30px;
+    height: 620px;
+}
 
-  display: grid;
-
-  grid-template-columns: 1.5fr 0.75fr;
-
-  gap: 30px;
-
+.calendar-card,
+.calendar-side {
+    min-height: 0;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .calendar-side {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 320px);
+    gap: 40px;
+    min-height: 0;
+}
 
-  display: grid;
+.rating {
 
-  grid-template-rows: 1fr 1fr;
+    padding: 24px 28px;
 
-  gap: 30px;
+    min-height: 0;
+
+    overflow: visible;
+
+}
+
+.rating-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 4px;
+
+}
+
+.rating-actions button {
+
+    border: 0;
+
+    border-bottom: 1px solid var(--ink);
+
+    background: transparent;
+
+    padding: 6px 0;
+
+    font-family: inherit;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+}
+
+.rating-actions button:hover {
+
+    color: var(--muted);
 
 }
 
@@ -735,23 +791,41 @@ h1 em {
 }
 
 .subject-balance-menu {
+
     position: absolute;
+
     top: 58px;
+
     right: 10px;
+
     width: 210px;
+
     background: #fffdf8;
+
     border: 1px solid var(--line);
+
     border-radius: 5px;
+
     padding: 26px 28px;
+
     box-shadow: 0 0 18px rgba(120, 105, 80, 0.13);
+
     z-index: 50;
+
     opacity: 0;
+
     visibility: hidden;
+
     transform: translateY(-5px);
+
     transition:
+
         opacity 0.18s ease,
+
         transform 0.18s ease,
+
         visibility 0.18s ease;
+
 }
 
 .subject-balance-menu.open {
@@ -911,17 +985,18 @@ h1 em {
 }
 
 .calendar-card,
-
 .rating,
-
 .weekly-progress-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 28px;
+}
 
-  background: var(--white);
-
-  border: 1px solid var(--line);
-
-  padding: 28px;
-
+.rating {
+    background: var(--lav);
+    padding: 32px 28px;
+    min-height: 0;
+    overflow: visible;
 }
 
 .cal-head {
@@ -1159,18 +1234,6 @@ h1 em {
 .emptyday {
 
   background: transparent;
-
-}
-
-.rating {
-
-  background: var(--lav);
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
 
 }
 
@@ -3025,104 +3088,191 @@ footer {
 }
 
 /* =========================
+
    ZOOM / NARROW VIEW FIX
+
 ========================= */
 
 img,
+
 svg {
+
     max-width: 100%;
+
 }
 
 .hero,
+
 .calendar-layout,
+
 .section-title,
+
 .weekly-detail-section,
+
 .subject-balance-card {
+
     min-width: 0;
+
 }
 
 .hero > *,
+
 .calendar-layout > *,
+
 .section-title > *,
+
 .weekly-detail-section > *,
+
 .subject-balance-card > * {
+
     min-width: 0;
+
 }
 
 @media (max-width: 1100px) {
+
     .hero {
+
         grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
+
         gap: 40px;
+
     }
 
     .calendar-layout {
+
         gap: 30px;
+
     }
 
     header {
+
         gap: 30px;
+
     }
 
     nav {
+
         gap: 20px;
+
     }
+
 }
 
 @media(max-width:850px) {
+
     header {
+
         padding: 0 5vw;
+
         gap: 20px;
+
     }
 
     nav {
+
         gap: 16px;
+
         min-width: 0;
+
     }
 
     .hero {
+
         grid-template-columns: 1fr;
+
         padding: 60px 7vw;
+
     }
 
     .vocab {
+
         max-width: 500px;
+
     }
 
     .calendar-layout {
+
         grid-template-columns: 1fr;
+
     }
 
     .section-title {
+
         display: block;
+
     }
+
 }
 
 /* 防止瀏覽器放大後內容橫向爆版 */
+
 html,
+
 body {
+
     max-width: 100%;
+
     overflow-x: clip;
+
 }
 
 header {
+
     width: 100%;
+
     min-width: 0;
+
 }
 
 header .brand,
+
 header nav {
+
     min-width: 0;
+
 }
 
 /* 導覽列永遠在頁面內容上方 */
+
 header {
+
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
+
     background: rgba(250, 247, 239, 0.82);
+
     backdrop-filter: blur(8px);
+
     -webkit-backdrop-filter: blur(8px);
 
     height: 76px;
+
     box-sizing: border-box;
+
+}
+
+/* =========================
+
+   PAGE SCROLL POSITION
+
+========================= */
+
+html {
+
+    scroll-behavior: smooth;
+
+    scroll-snap-type: y proximity;
+
+}
+
+.calendar-layout {
+
+    scroll-snap-align: start;
+
+    scroll-margin-top: 90px;
+
 }
