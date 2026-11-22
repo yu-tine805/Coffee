@@ -26,33 +26,6 @@ function count() {
 
   document.getElementById("questionCount").textContent = pendingCount;
 }
-function vocabInit() {
-  let w = document.getElementById("word");
-  if (!w) return;
-  let i = 0;
-  function r() {
-    let v = vocab[i];
-    document.getElementById("vno").textContent = `${pad(i + 1)} / 06`;
-    w.textContent = v[0];
-    document.getElementById("pron").textContent = v[1];
-    document.getElementById("meaning").textContent = v[2];
-    document.getElementById("source").href = "https://dict.revised.moe.edu.tw/";
-    document.getElementById("example").textContent = v[3];
-  }
-  document.getElementById("prev").onclick = () => {
-    i = (i + 5) % 6;
-    r();
-  };
-  document.getElementById("next").onclick = () => {
-    i = (i + 1) % 6;
-    r();
-  };
-  r();
-  setInterval(() => {
-    i = (i + 1) % 6;
-    r();
-  }, 6500);
-}
 let cm = new Date(),
   selected;
 function isEditableDate(k) {
@@ -251,12 +224,10 @@ function getSubjectBalanceScore(subject) {
     return record.study?.[`quiz|${subject}`];
   });
 
-  if (hasQuiz) {
     score +=
       records.filter((record) => {
         return record.study?.[`quiz|${subject}`];
       }).length * 2;
-  }
 
   // 本週新增問題：每個 +1
   score += d.questions.filter((q) => {
@@ -1582,7 +1553,6 @@ function questions() {
 }
 document.addEventListener("DOMContentLoaded", () => {
   count();
-  vocabInit();
   calInit();
   tableInit();
   questions();
